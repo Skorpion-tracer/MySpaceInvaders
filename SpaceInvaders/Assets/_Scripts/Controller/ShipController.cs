@@ -9,18 +9,10 @@ namespace Controller
         private Ship _ship;
         private ShipView _shipView;
 
-        private Vector2 _screenBounds;
-        private float _objectWidth;
-        private float _objectHeight;
-
         public ShipController(Ship ship, ShipView shipView)
         {
             _ship = ship;
             _shipView = shipView;
-
-            _screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-            _objectWidth = shipView.transform.GetComponent<SpriteRenderer>().bounds.size.x / 2;
-            _objectHeight = shipView.transform.GetComponent<SpriteRenderer>().bounds.size.y / 2;
         }
 
         public void Move(bool isInput, float horizontal, float vertical)
