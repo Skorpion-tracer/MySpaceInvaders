@@ -8,6 +8,6 @@ namespace Model
 {
     public interface IMove
     {
-        void Move(float direction);
+        void Move(bool isInupt, float direction, float vertical);
     }
 }

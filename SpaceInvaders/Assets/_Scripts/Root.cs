@@ -8,27 +8,32 @@ namespace SpaceInvaders
     public sealed class Root : MonoBehaviour
     {
         [SerializeField] private float _speedShipPlayer;
+        [SerializeField] private float _offsetMoveShipPlayer;
 
-        [SerializeField] private Transform _spawnShip;
-
-        [SerializeField] private ShipView _player;
+        [SerializeField] private Transform _spawnPlayer;
+        [SerializeField] private DataShip _dataShip;
 
         private ShipController _shipController;
         private InputController _inputController;
 
-        private void Start()
+        private void Awake()
         {
-            var ship = new Ship(_speedShipPlayer);
-            _shipController = new ShipController(ship, _player);
-            _inputController = new InputController(_shipController);
+            var player = Resources.Load<ShipView>("Prefabs/Ship");
+            player = Instantiate(player, _spawnPlayer.position, Quaternion.identity);
 
-            GameObject.Instantiate(_player, _spawnShip.position, Quaternion.identity);
+            var ship = new Ship(_speedShipPlayer, _offsetMoveShipPlayer, _dataShip);
+            _shipController = new ShipController(ship, player);
+            _inputController = new InputController(_shipController);
+        }
+
+        private void FixedUpdate()
+        {
+            _inputController.Execute();
         }
 
         private void Update()
         {
-            //_inputController.Execute();
-            _player.SetMove(14, 14);
+            _shipController.BoundMove();
         }
     } 
 }

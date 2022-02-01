@@ -5,6 +5,9 @@ namespace Controller
 {
     public class InputController
     {
+        private const string HORIZONTAL = "Horizontal";
+        private const string VERTICAL = "Vertical";
+
         private ShipController _shipController;
         public InputController(ShipController shipController)
         {
@@ -13,11 +16,10 @@ namespace Controller
 
         public void Execute()
         {
-            if (Input.anyKey)
-            {
-                var direction = Input.GetAxis("Horizontal");
-                _shipController.Move(direction);
-            }            
+            bool isInput = Input.GetAxis(HORIZONTAL) != 0 || Input.GetAxis(VERTICAL) != 0;
+            var horizontal = Input.GetAxis(HORIZONTAL);
+            var vertical = Input.GetAxis(VERTICAL);
+            _shipController.Move(isInput, horizontal, vertical);
         }
     }
 }
