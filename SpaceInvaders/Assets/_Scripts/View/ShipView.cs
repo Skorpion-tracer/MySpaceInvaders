@@ -8,7 +8,9 @@ namespace View
     public sealed class ShipView : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _bodyShip;
+        [SerializeField] private Transform _spawnerProjectile;
 
         public Rigidbody2D ShipBody => _bodyShip;
+        public Transform SpawnerProjectile => _spawnerProjectile;
     } 
 }

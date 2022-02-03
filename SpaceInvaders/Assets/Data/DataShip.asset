@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c88e426739b514184c876475f90f63, type: 3}
   m_Name: DataShip
   m_EditorClassIdentifier: 
-  OffsetLeftBound: 8
-  OffsetRightBound: 8
-  OffsetTopBound: -2
-  OffsetBottomBound: 4
+  _offsetLeftBound: 8
+  _offsetRightBound: 8
+  _offsetTopBound: 0
+  _offsetBottomBound: 4
+  _speedShipPlayer: 5
+  _offsetMoveShipPlayer: 0.3
+  _weapon: {fileID: 4471766030996375817, guid: a1239fdd3fd727f44b22d12b608ba843, type: 3}
