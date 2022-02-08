@@ -8,6 +8,7 @@ namespace SpaceInvaders
     public sealed class Root : MonoBehaviour
     {
         [SerializeField] private Transform _spawnPlayer;
+        [SerializeField] private Transform _spawnEnemies;
         [SerializeField] private DataShip _dataShip;
 
         private ShipController _shipController;

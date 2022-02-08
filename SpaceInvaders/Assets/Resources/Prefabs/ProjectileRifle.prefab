@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1200069563876610376}
   - component: {fileID: 4471766030996375817}
   m_Layer: 6
-  m_Name: Projectile
+  m_Name: ProjectileRifle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,8 +131,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 9158688518417268979}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 482b1027157c7dd4794f14d961a4c495, type: 3}
+  m_Script: {fileID: 11500000, guid: e7e302ceaa75f0e489455288c8032d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _body: {fileID: 1200069563876610376}
-  _lifeTime: 15
+  _lifeTime: 2

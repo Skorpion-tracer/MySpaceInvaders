@@ -18,4 +18,5 @@ MonoBehaviour:
   _offsetBottomBound: 4
   _speedShipPlayer: 5
   _offsetMoveShipPlayer: 0.3
-  _weapon: {fileID: 4471766030996375817, guid: a1239fdd3fd727f44b22d12b608ba843, type: 3}
+  _currentHealth: 30
+  _maxHealth: 50

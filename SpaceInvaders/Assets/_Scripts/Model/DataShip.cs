@@ -14,8 +14,9 @@ public class DataShip : ScriptableObject
     [SerializeField] private float _speedShipPlayer;
     [SerializeField] private float _offsetMoveShipPlayer;
 
-    [Header("Weapons")]
-    [SerializeField] private ProjectileView _weapon;
+    [Header("Health")]
+    [SerializeField] private int _currentHealth;
+    [SerializeField] private int _maxHealth;
 
     public float OffsetLeftBound => _offsetLeftBound;
     public float OffsetRightBound => _offsetRightBound;
@@ -23,5 +24,6 @@ public class DataShip : ScriptableObject
     public float OffsetBottomBound => _offsetBottomBound;
     public float Speed => _speedShipPlayer;
     public float OffsetMove => _offsetMoveShipPlayer;
-    public ProjectileView Weapon => _weapon;
+    public int CurrentHealth => _currentHealth;
+    public int MaxHealth => _maxHealth;
 }

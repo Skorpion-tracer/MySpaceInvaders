@@ -9,13 +9,15 @@ namespace Controller
     {
         private DataShip _ship;
         private ShipView _shipView;
+        private Health _health;
         private IAttack _attack;
 
         public ShipController(DataShip ship, ShipView shipView)
         {
             _ship = ship;
             _shipView = shipView;
-            _attack = new Weapon(ship.Weapon, shipView.SpawnerProjectile);
+            _attack = new SingleShoot(shipView.SpawnerProjectile);
+            _health = new Health(ship.CurrentHealth, ship.MaxHealth);
         }
 
         public void Move(bool isInput, float horizontal, float vertical)
@@ -45,6 +47,16 @@ namespace Controller
         public void Fire()
         {
             _attack.Attack();
+        }
+
+        public void StopFire()
+        {
+            _attack.StopAttack();
+        }
+
+        public void SwapWeapon(IAttack attack)
+        {
+            _attack = attack;
         }
     }
 }           
