@@ -1,5 +1,4 @@
 ﻿using Behavior;
-using System;
 using UnityEngine;
 using View;
 
@@ -14,5 +13,10 @@ namespace Model
 
         public abstract void Attack();
         public abstract void StopAttack();
+        protected BaseProjectileView Projectile_OnCollision(EnemyView enemy)
+        {
+            enemy.OnHitInvoke(_damage);
+            return null;
+        }
     }
 }

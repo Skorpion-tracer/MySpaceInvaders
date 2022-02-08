@@ -10,9 +10,11 @@ namespace SpaceInvaders
         [SerializeField] private Transform _spawnPlayer;
         [SerializeField] private Transform _spawnEnemies;
         [SerializeField] private DataShip _dataShip;
+        [SerializeField] private RulesSpawnEnemy _rulesSpawnEnemy;
 
         private ShipController _shipController;
         private InputController _inputController;
+        private SpawnEnemyController _spawnEnemyController;
 
         private void Awake()
         {
@@ -21,6 +23,7 @@ namespace SpaceInvaders
 
             _shipController = new ShipController(_dataShip, player);
             _inputController = new InputController(_shipController);
+            _spawnEnemyController = new SpawnEnemyController(_spawnEnemies, _rulesSpawnEnemy);
         }
 
         private void FixedUpdate()
@@ -32,6 +35,7 @@ namespace SpaceInvaders
         {
             _shipController.BoundMove();
             _inputController.Execute();
+            _spawnEnemyController.Execute();
         }
     } 
 }

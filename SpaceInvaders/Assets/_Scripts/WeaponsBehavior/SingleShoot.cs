@@ -30,6 +30,7 @@ namespace Model
             {
                 var projectile = Object.Instantiate(_projectile, _spawnProjectile.position, Quaternion.identity);
                 projectile.Body.AddForce(projectile.transform.up * _speed, ForceMode2D.Force);
+                projectile.Subscribe(Projectile_OnCollision);
                 _canShoot = false;
             }
         }

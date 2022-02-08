@@ -26,6 +26,7 @@ namespace View
             if (collision.gameObject.TryGetComponent<EnemyView>(out EnemyView enemy))
             {
                 OnCollision?.Invoke(enemy);
+                Destroy(gameObject);
             }
         }
 

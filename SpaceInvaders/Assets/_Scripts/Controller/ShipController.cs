@@ -18,6 +18,9 @@ namespace Controller
             _shipView = shipView;
             _attack = new SingleShoot(shipView.SpawnerProjectile);
             _health = new Health(ship.CurrentHealth, ship.MaxHealth);
+
+            _shipView.OnDestroyer += ShipView_OnDestroyer;
+            _health.OnDeath += Health_OnDeath;
         }
 
         public void Move(bool isInput, float horizontal, float vertical)
@@ -57,6 +60,17 @@ namespace Controller
         public void SwapWeapon(IAttack attack)
         {
             _attack = attack;
+        }
+
+        private void Health_OnDeath()
+        {
+
+        }
+
+        private void ShipView_OnDestroyer()
+        {
+            _shipView.OnDestroyer -= ShipView_OnDestroyer;
+            _health.OnDeath -= Health_OnDeath;
         }
     }
 }           

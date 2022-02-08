@@ -11,8 +11,7 @@ namespace Model
         private int _currentHealth;
         private int _maxHealth;
 
-        public int CurrentHealth => _currentHealth;
-        public int MaxHealth { get => _maxHealth; }
+        public event Action OnDeath;
 
         public Health(int currentHealth, int maxHealth)
         {
@@ -37,6 +36,17 @@ namespace Model
             {
                 _currentHealth = 10;
             }
+        }
+
+        public void DealDamage(int hp)
+        {
+            _currentHealth -= hp;
+            if (_currentHealth <= 0) OnDeath?.Invoke();
+        }
+
+        public int GetCurrentHealth()
+        {
+            return _currentHealth;
         }
     }
 }
