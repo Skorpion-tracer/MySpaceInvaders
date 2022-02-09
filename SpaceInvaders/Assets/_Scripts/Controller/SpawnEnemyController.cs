@@ -14,13 +14,15 @@ namespace Controller
         private Transform _spawnTransform;
         private RulesSpawnEnemy _rulesSpawnEnemy;
         private float _time = 0;
+        private MainUI _score;
 
         public event Action AllEnemiesDeath;
 
-        public SpawnEnemyController(Transform spawnEnemy, RulesSpawnEnemy rulesSpawnEnemy)
+        public SpawnEnemyController(Transform spawnEnemy, RulesSpawnEnemy rulesSpawnEnemy, MainUI score)
         {
             _spawnTransform = spawnEnemy;
             _rulesSpawnEnemy = rulesSpawnEnemy;
+            _score = score;
 
             _enemies = new Queue<EnemyController>();
             _enemiesStack = new Stack<EnemyController>();
@@ -64,6 +66,25 @@ namespace Controller
             }
         }
 
+        public void AllDestroy()
+        {
+            foreach (EnemyController enemy in _enemies)
+            {
+                if (enemy != null)
+                {
+                    enemy.Destroy();
+                }
+            }
+
+            foreach (EnemyController enemy in _enemiesStack)
+            {
+                if (enemy != null)
+                {
+                    enemy.Destroy();
+                }
+            }
+        }
+
         private void PushQueue()
         {
             for (int i = 0; i < _rulesSpawnEnemy.CountEnemies; i++)
@@ -75,6 +96,8 @@ namespace Controller
         private void SpawnEnemyController_OnEnemyDead()
         {
             _enemiesDeath.Add(_enemiesStack.Peek());
+            _score.Score += UnityEngine.Random.Range(1, 5);
+            _enemiesStack.Peek().OnEnemyDead -= SpawnEnemyController_OnEnemyDead;
         }
     }
 }

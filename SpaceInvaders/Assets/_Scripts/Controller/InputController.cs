@@ -35,15 +35,6 @@ namespace Controller
             {
                 _shipController.StopFire();
             }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                _shipController.SwapWeapon(new Rifle());
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                _shipController.SwapWeapon(new SingleShoot());
-            }
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Model
     public sealed class SingleShoot : BaseWeapon
     {
         private bool _canShoot = true;
-        private int _valueDamage = 10;
+        private int _valueDamage = 20;
 
         public SingleShoot(Transform spawnProjectile)
         {

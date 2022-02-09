@@ -18,7 +18,7 @@ namespace Model
         public EnemyModel(Health health)
         {
             _health = health;
-            _damage = new Damage(15);
+            _damage = new Damage(10);
         }
     }
 }

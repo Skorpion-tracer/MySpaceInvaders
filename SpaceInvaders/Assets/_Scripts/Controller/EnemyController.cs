@@ -23,10 +23,28 @@ namespace Controller
 
             _enemyView = Object.Instantiate(view, position, Quaternion.identity);
             _enemyView.OnHit += EnemyView_OnHit;
+            _enemyView.OnCollision += EnemyView_OnCollision;
+        }
+
+        private void EnemyView_OnCollision(Collision2D collider)
+        {
+            if (collider.gameObject.TryGetComponent<ShipView>(out ShipView player))
+            {
+                player.DealDamage(_enemyModel.Damage);
+                Object.Destroy(_enemyView.gameObject);
+            }
         }
 
         private void Health_OnDeath()
         {
+            int chanceGettingBonus = Random.Range(0, 3);
+
+            if (chanceGettingBonus == 2)
+            {
+                var bonus = Resources.Load<BonusView>("Prefabs/Bonus");
+                bonus = Object.Instantiate(bonus, _enemyView.transform.position, Quaternion.identity);
+            }
+
             Object.Destroy(_enemyView.gameObject);
             _enemyModel.Health.OnDeath -= Health_OnDeath;
             _enemyView.OnHit -= EnemyView_OnHit;
@@ -36,7 +54,6 @@ namespace Controller
         private void EnemyView_OnHit(Damage damage)
         {
             _enemyModel.Health.DealDamage(damage.ValueDamage);
-            Debug.Log(_enemyModel.Health.GetCurrentHealth());
         }
 
         public void Execute()
@@ -45,6 +62,12 @@ namespace Controller
             {
                 _enemyView.transform.Translate(Vector2.down * _enemyModel.Speed * Time.deltaTime);
             }
+        }
+
+        public void Destroy()
+        {
+            if (_enemyView != null)
+                Object.Destroy(_enemyView.gameObject);
         }
     }
 }

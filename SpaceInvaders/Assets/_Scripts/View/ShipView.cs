@@ -1,3 +1,4 @@
+using Model;
 using System;
 using UnityEngine;
 
@@ -12,11 +13,28 @@ namespace View
         public Rigidbody2D ShipBody => _bodyShip;
         public Transform SpawnerProjectile => _spawnerProjectile;
 
-        public event Action OnDestroyer;
+        public event Action OnDeath;
+        public event Action<Damage> OnDamage;
+        public event Action<BonusType> OnGetBonus;
 
-        private void OnDestroy()
+        public void SetActive(bool param)
         {
-            OnDestroyer?.Invoke();
+            gameObject.SetActive(param);
+        }
+
+        public void DealDamage(Damage damage)
+        {
+            OnDamage?.Invoke(damage);
+        }
+
+        public void GetBonus(BonusType bonusType)
+        {
+            OnGetBonus?.Invoke(bonusType);
+        }
+
+        private void OnDisable()
+        {
+            OnDeath?.Invoke();
         }
     } 
 }

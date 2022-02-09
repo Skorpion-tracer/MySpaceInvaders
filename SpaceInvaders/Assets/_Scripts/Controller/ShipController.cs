@@ -19,8 +19,9 @@ namespace Controller
             _attack = new SingleShoot(shipView.SpawnerProjectile);
             _health = new Health(ship.CurrentHealth, ship.MaxHealth);
 
-            _shipView.OnDestroyer += ShipView_OnDestroyer;
             _health.OnDeath += Health_OnDeath;
+            _shipView.OnDamage += ShipView_OnDamage;
+            _shipView.OnGetBonus += ShipView_OnGetBonus;
         }
 
         public void Move(bool isInput, float horizontal, float vertical)
@@ -57,20 +58,34 @@ namespace Controller
             _attack.StopAttack();
         }
 
-        public void SwapWeapon(IAttack attack)
+        private void SwapWeapon(IAttack attack)
         {
             _attack = attack;
         }
 
         private void Health_OnDeath()
         {
-
+            _shipView.SetActive(false);
+            _health.OnDeath -= Health_OnDeath;
+            _shipView.OnDamage -= ShipView_OnDamage;
+            _shipView.OnGetBonus -= ShipView_OnGetBonus;
         }
 
-        private void ShipView_OnDestroyer()
+        private void ShipView_OnDamage(Damage damage)
         {
-            _shipView.OnDestroyer -= ShipView_OnDestroyer;
-            _health.OnDeath -= Health_OnDeath;
+            _health.DealDamage(damage.ValueDamage);
+        }
+
+        private void ShipView_OnGetBonus(BonusType bonusType)
+        {
+            if (bonusType == BonusType.WeaponRifle)
+            {
+                SwapWeapon(new Rifle());
+            }
+            else if (bonusType == BonusType.SingleShoot)
+            {
+                SwapWeapon(new SingleShoot());
+            }
         }
     }
 }           
