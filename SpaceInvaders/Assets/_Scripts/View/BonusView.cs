@@ -3,7 +3,7 @@ using UnityEngine;
 namespace View
 {
     [RequireComponent(typeof(Rigidbody2D)), RequireComponent(typeof(SpriteRenderer))]
-    public class BonusView : MonoBehaviour
+    public sealed class BonusView : MonoBehaviour
     {
         private Color _cyan = Color.cyan;
         private Color _darkPink = Color.magenta;

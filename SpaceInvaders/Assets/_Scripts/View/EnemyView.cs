@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace View
 {
-    public sealed class EnemyView : MonoBehaviour, IEnemyView
+    public sealed class EnemyView : MonoBehaviour
     {
         [SerializeField] private float _lifeTime;
 

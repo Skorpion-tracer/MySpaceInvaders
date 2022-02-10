@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Controller
 {
-    public class EnemyController
+    public sealed class EnemyController
     {
         private EnemyModel _enemyModel;
         private EnemyView _enemyView;

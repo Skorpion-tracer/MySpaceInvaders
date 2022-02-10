@@ -4,7 +4,7 @@ using View;
 namespace Model
 {
     [CreateAssetMenu(menuName = "Rules/RulesSpawnEnemy", fileName = nameof(RulesSpawnEnemy))]
-    public class RulesSpawnEnemy : ScriptableObject
+    public sealed class RulesSpawnEnemy : ScriptableObject
     {
         [SerializeField] private float _countEnemies;
         [SerializeField] private float _frequencySpawn;

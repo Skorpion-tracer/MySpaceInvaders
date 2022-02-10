@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Health
+    public sealed class Health
     {
         private int _currentHealth;
         private int _maxHealth;

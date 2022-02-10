@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace View
@@ -10,8 +8,7 @@ namespace View
         [SerializeField] protected Rigidbody2D _body;
         [SerializeField] protected float _lifeTime;
 
-        public event Func<EnemyView, BaseProjectileView> OnCollision;
-
+        private event Func<EnemyView, BaseProjectileView> _onCollision;
         private Func<EnemyView, BaseProjectileView> _method;
 
         public Rigidbody2D Body => _body;
@@ -25,7 +22,7 @@ namespace View
         {
             if (collision.gameObject.TryGetComponent<EnemyView>(out EnemyView enemy))
             {
-                OnCollision?.Invoke(enemy);
+                _onCollision?.Invoke(enemy);
                 Destroy(gameObject);
             }
         }
@@ -33,12 +30,12 @@ namespace View
         public void Subscribe(Func<EnemyView, BaseProjectileView> method)
         {
             _method = method;
-            OnCollision += _method;
+            _onCollision += _method;
         }
 
         private void OnDestroy()
         {
-            OnCollision -= _method;
+            _onCollision -= _method;
         }
     }
 }

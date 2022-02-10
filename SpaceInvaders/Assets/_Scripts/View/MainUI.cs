@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
-public class MainUI
+public sealed class MainUI
 {
     private Text _scoreText;
     private int _score;

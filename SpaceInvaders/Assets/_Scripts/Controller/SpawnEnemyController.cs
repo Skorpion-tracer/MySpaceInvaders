@@ -29,19 +29,7 @@ namespace Controller
             _enemiesDeath = new List<EnemyController>();
 
             PushQueue();
-        }
-
-        private void SpawnEnemy()
-        {
-            _enemiesStack.Push(_enemies.Dequeue());
-            _enemiesStack.Peek().Spawn(_spawnTransform, _rulesSpawnEnemy.Enemy);
-            _enemiesStack.Peek().OnEnemyDead += SpawnEnemyController_OnEnemyDead;
-
-            if (_enemies.Count <= 0)
-            {
-                PushQueue();
-            }
-        }        
+        }               
 
         public void Execute()
         {
@@ -82,6 +70,18 @@ namespace Controller
                 {
                     enemy.Destroy();
                 }
+            }
+        }
+
+        private void SpawnEnemy()
+        {
+            _enemiesStack.Push(_enemies.Dequeue());
+            _enemiesStack.Peek().Spawn(_spawnTransform, _rulesSpawnEnemy.Enemy);
+            _enemiesStack.Peek().OnEnemyDead += SpawnEnemyController_OnEnemyDead;
+
+            if (_enemies.Count <= 0)
+            {
+                PushQueue();
             }
         }
 

@@ -2,7 +2,7 @@ using UnityEngine;
 using View;
 
 [CreateAssetMenu(menuName = "Datas/ShipModel", fileName = "DataShip")]
-public class DataShip : ScriptableObject
+public sealed class DataShip : ScriptableObject
 {
     [Header("BoundsMove")]
     [SerializeField] private float _offsetLeftBound;

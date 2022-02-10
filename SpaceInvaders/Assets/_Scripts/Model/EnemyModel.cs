@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
-    public class EnemyModel
+    public sealed class EnemyModel
     {
         private float _speed = 3f;
         private Health _health;

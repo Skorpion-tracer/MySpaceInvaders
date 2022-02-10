@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Controller
 {
-    public class InputController
+    public sealed class InputController
     {
         private const string HORIZONTAL = "Horizontal";
         private const string VERTICAL = "Vertical";
@@ -11,6 +11,7 @@ namespace Controller
         private const KeyCode FIRE = KeyCode.Space;
 
         private ShipController _shipController;
+
         public InputController(ShipController shipController)
         {
             _shipController = shipController;
@@ -22,7 +23,6 @@ namespace Controller
             var horizontal = Input.GetAxis(HORIZONTAL);
             var vertical = Input.GetAxis(VERTICAL);
             _shipController.Move(isInput, horizontal, vertical);
-
         }
 
         public void Execute()
